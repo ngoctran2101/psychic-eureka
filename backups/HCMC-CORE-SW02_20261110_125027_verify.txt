@@ -1,0 +1,227 @@
+! HCMC-CORE-SW02 (192.168.1.11) - verification @ 20261110_125027
+==============================================================================
+# VLAN
+# HCMC-CORE-SW02# show vlan brief
+==============================================================================
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi0/2, Gi0/3, Gi1/2, Gi1/3, Gi2/2, Gi2/3, Gi3/1, Gi3/2, Gi3/3
+10   EXEC_FINANCE                     active    
+11   CORP_STAFF_1                     active    
+12   CORP_STAFF_2                     active    
+13   CORP_STAFF_3                     active    
+14   CORP_STAFF_4                     active    
+40   GUEST                            active    
+50   SERVER_DC                        active    
+60   IOT_BUILDING                     active    
+61   IOT_SECURITY                     active    
+70   VOICE_1                          active    
+71   VOICE_2                          active    
+72   VOICE_3                          active    
+99   MANAGEMENT                       active    Gi3/0
+999  BLACKHOLE                        active    
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+
+==============================================================================
+# TRUNK 802.1Q
+# HCMC-CORE-SW02# show interfaces trunk
+==============================================================================
+
+Port        Mode             Encapsulation  Status        Native vlan
+Gi1/0       on               802.1q         trunking      1
+Gi1/1       on               802.1q         trunking      1
+Po1         on               802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Gi1/0       10-11,99
+Gi1/1       40,60,70,99
+Po1         10-14,40,50,60-61,70-72,99
+
+Port        Vlans allowed and active in management domain
+Gi1/0       10-11,99
+Gi1/1       40,60,70,99
+Po1         10-14,40,50,60-61,70-72,99
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gi1/0       10-11,99
+Gi1/1       40,60,70,99
+Po1         10-14,40,50,60-61,70-72,99
+
+==============================================================================
+# ETHERCHANNEL
+# HCMC-CORE-SW02# show etherchannel summary
+==============================================================================
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 1
+Number of aggregators:           1
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+1      Po1(SU)         LACP      Gi0/0(P)    Gi0/1(P)    
+
+
+==============================================================================
+# STP SUMMARY
+# HCMC-CORE-SW02# show spanning-tree summary
+==============================================================================
+Switch is in rapid-pvst mode
+Root bridge for: VLAN0001
+Extended system ID                      is enabled
+Portfast Default                        is disabled
+Portfast Edge BPDU Guard Default        is disabled
+Portfast Edge BPDU Filter Default       is disabled
+Loopguard Default                       is disabled
+PVST Simulation Default                 is enabled but inactive in rapid-pvst mode
+Bridge Assurance                        is enabled
+EtherChannel misconfig guard            is enabled
+Configured Pathcost method used is short
+UplinkFast                              is disabled
+BackboneFast                            is disabled
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     0         0        0          9          9
+VLAN0010                     0         0        0          2          2
+VLAN0011                     0         0        0          2          2
+VLAN0012                     0         0        0          1          1
+VLAN0013                     0         0        0          1          1
+VLAN0014                     0         0        0          1          1
+VLAN0040                     0         0        0          2          2
+VLAN0050                     0         0        0          1          1
+VLAN0060                     0         0        0          2          2
+VLAN0061                     0         0        0          1          1
+VLAN0070                     0         0        0          2          2
+VLAN0071                     0         0        0          1          1
+VLAN0072                     0         0        0          1          1
+VLAN0099                     0         0        0          4          4
+---------------------- -------- --------- -------- ---------- ----------
+14 vlans                     0         0        0         30         30
+
+==============================================================================
+# STP ROOT
+# HCMC-CORE-SW02# show spanning-tree root
+==============================================================================
+
+                                        Root    Hello Max Fwd
+Vlan                   Root ID          Cost    Time  Age Dly  Root Port
+---------------- -------------------- --------- ----- --- ---  ------------
+VLAN0001         32769 5000.0008.0000         0    2   20  15                  
+VLAN0010          4106 5000.0002.0000         3    2   20  15  Po1             
+VLAN0011          4107 5000.0002.0000         3    2   20  15  Po1             
+VLAN0012          4108 5000.0002.0000         3    2   20  15  Po1             
+VLAN0013          4109 5000.0002.0000         3    2   20  15  Po1             
+VLAN0014          4110 5000.0002.0000         3    2   20  15  Po1             
+VLAN0040          4136 5000.0002.0000         3    2   20  15  Po1             
+VLAN0050          4146 5000.0002.0000         3    2   20  15  Po1             
+VLAN0060          4156 5000.0002.0000         3    2   20  15  Po1             
+VLAN0061          4157 5000.0002.0000         3    2   20  15  Po1             
+VLAN0070          4166 5000.0002.0000         3    2   20  15  Po1             
+VLAN0071          4167 5000.0002.0000         3    2   20  15  Po1             
+VLAN0072          4168 5000.0002.0000         3    2   20  15  Po1             
+VLAN0099          4195 5000.0002.0000         3    2   20  15  Po1             
+
+==============================================================================
+# IP INTERFACE
+# HCMC-CORE-SW02# show ip interface brief
+==============================================================================
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     unassigned      YES unset  up                    up      
+GigabitEthernet0/1     unassigned      YES unset  up                    up      
+GigabitEthernet0/2     unassigned      YES unset  up                    up      
+GigabitEthernet0/3     unassigned      YES unset  up                    up      
+GigabitEthernet1/0     unassigned      YES unset  up                    up      
+GigabitEthernet1/1     unassigned      YES unset  up                    up      
+GigabitEthernet1/2     unassigned      YES unset  up                    up      
+GigabitEthernet1/3     unassigned      YES unset  up                    up      
+GigabitEthernet2/0     10.10.1.9       YES NVRAM  up                    up      
+GigabitEthernet2/1     10.10.1.13      YES NVRAM  up                    up      
+GigabitEthernet2/2     unassigned      YES unset  up                    up      
+GigabitEthernet2/3     unassigned      YES unset  up                    up      
+GigabitEthernet3/0     unassigned      YES unset  up                    up      
+GigabitEthernet3/1     unassigned      YES unset  up                    up      
+GigabitEthernet3/2     unassigned      YES unset  up                    up      
+GigabitEthernet3/3     unassigned      YES unset  up                    up      
+Loopback0              10.10.0.12      YES NVRAM  up                    up      
+Port-channel1          unassigned      YES unset  up                    up      
+Vlan10                 10.10.32.3      YES NVRAM  up                    up      
+Vlan11                 10.10.36.3      YES NVRAM  up                    up      
+Vlan40                 10.10.16.3      YES NVRAM  up                    up      
+Vlan50                 10.10.10.3      YES NVRAM  up                    up      
+Vlan60                 10.10.128.3     YES NVRAM  up                    up      
+Vlan70                 10.10.64.3      YES NVRAM  up                    up      
+Vlan99                 192.168.1.11    YES NVRAM  up                    up      
+
+==============================================================================
+# INTERFACE STATUS
+# HCMC-CORE-SW02# show interfaces status
+==============================================================================
+
+Port      Name               Status       Vlan       Duplex  Speed Type 
+Gi0/0     LACP_MEMBER_TO_HCM connected    trunk      a-full   auto RJ45
+Gi0/1     LACP_MEMBER_TO_HCM connected    trunk      a-full   auto RJ45
+Gi0/2                        connected    1          a-full   auto RJ45
+Gi0/3                        connected    1          a-full   auto RJ45
+Gi1/0     TRUNK_TO_HCMC-ACC- connected    trunk      a-full   auto RJ45
+Gi1/1     TRUNK_TO_HCMC-ACC- connected    trunk      a-full   auto RJ45
+Gi1/2                        connected    1          a-full   auto RJ45
+Gi1/3                        connected    1          a-full   auto RJ45
+Gi2/0     L09 -> HCMC-EDGE-R connected    routed     a-full   auto RJ45
+Gi2/1     L10 -> HCMC-EDGE-R connected    routed     a-full   auto RJ45
+Gi2/2                        connected    1          a-full   auto RJ45
+Gi2/3                        connected    1          a-full   auto RJ45
+Gi3/0     AUTOMATION_NODE_AU connected    99         a-full   auto RJ45
+Gi3/1                        connected    1          a-full   auto RJ45
+Gi3/2                        connected    1          a-full   auto RJ45
+Gi3/3                        connected    1          a-full   auto RJ45
+Po1       LACP_TRUNK_TO_HCMC connected    trunk      a-full   auto 
+
+==============================================================================
+# HSRP
+# HCMC-CORE-SW02# show standby brief
+==============================================================================
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State   Active          Standby         Virtual IP
+Vl10        10   100 P Standby 10.10.32.2      local           10.10.32.1
+Vl11        11   100 P Standby 10.10.36.2      local           10.10.36.1
+Vl40        40   100 P Standby 10.10.16.2      local           10.10.16.1
+Vl50        50   100 P Standby 10.10.10.2      local           10.10.10.1
+Vl60        60   100 P Standby 10.10.128.2     local           10.10.128.1
+Vl70        70   100 P Standby 10.10.64.2      local           10.10.64.1
+Vl99        99   100 P Standby 192.168.1.10    local           192.168.1.1
+
+==============================================================================
+# DHCP RELAY (SVI)
+# HCMC-CORE-SW02# show running-config | include ^interface Vlan|helper-address
+==============================================================================
+interface Vlan10
+ ip helper-address 10.10.10.10 
+interface Vlan11
+ ip helper-address 10.10.10.10 
+interface Vlan40
+ ip helper-address 10.10.10.10 
+interface Vlan50
+interface Vlan60
+ ip helper-address 10.10.10.10 
+interface Vlan70
+ ip helper-address 10.10.10.10 
+interface Vlan99
