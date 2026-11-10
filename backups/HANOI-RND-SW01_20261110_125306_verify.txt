@@ -1,0 +1,183 @@
+! HANOI-RND-SW01 (192.168.2.10) - verification @ 20261110_125306
+==============================================================================
+# VLAN
+# HANOI-RND-SW01# show vlan brief
+==============================================================================
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi0/3, Gi1/0, Gi1/1, Gi1/2, Gi1/3, Gi2/0, Gi2/1, Gi2/2, Gi2/3, Gi3/0, Gi3/1, Gi3/2, Gi3/3
+20   RND_ENG_1                        active    
+21   RND_ENG_2                        active    
+22   RND_ENG_3                        active    
+23   RND_ENG_4                        active    
+40   GUEST                            active    
+50   SERVER_AI                        active    
+60   IOT_LAB                          active    
+61   IOT_SECURITY                     active    
+70   VOICE_1                          active    
+71   VOICE_2                          active    
+72   VOICE_3                          active    
+99   MANAGEMENT                       active    
+999  BLACKHOLE                        active    
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+
+==============================================================================
+# TRUNK 802.1Q
+# HANOI-RND-SW01# show interfaces trunk
+==============================================================================
+
+Port        Mode             Encapsulation  Status        Native vlan
+Gi0/0       on               802.1q         trunking      1
+Po2         on               802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Gi0/0       20-23,40,50,60-61,70-72,99
+Po2         20-23,40,50,60-61,70-72,99
+
+Port        Vlans allowed and active in management domain
+Gi0/0       20-23,40,50,60-61,70-72,99
+Po2         20-23,40,50,60-61,70-72,99
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gi0/0       20-23,40,50,60-61,70-72,99
+Po2         20-23,40,50,60-61,70-72,99
+
+==============================================================================
+# ETHERCHANNEL
+# HANOI-RND-SW01# show etherchannel summary
+==============================================================================
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 1
+Number of aggregators:           1
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+2      Po2(SU)         LACP      Gi0/1(P)    Gi0/2(P)    
+
+
+==============================================================================
+# STP SUMMARY
+# HANOI-RND-SW01# show spanning-tree summary
+==============================================================================
+Switch is in rapid-pvst mode
+Root bridge for: VLAN0001, VLAN0020-VLAN0023, VLAN0040, VLAN0050
+  VLAN0060-VLAN0061, VLAN0070-VLAN0072, VLAN0099
+Extended system ID                      is enabled
+Portfast Default                        is disabled
+Portfast Edge BPDU Guard Default        is disabled
+Portfast Edge BPDU Filter Default       is disabled
+Loopguard Default                       is disabled
+PVST Simulation Default                 is enabled but inactive in rapid-pvst mode
+Bridge Assurance                        is enabled
+EtherChannel misconfig guard            is enabled
+Configured Pathcost method used is short
+UplinkFast                              is disabled
+BackboneFast                            is disabled
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     0         0        0         13         13
+VLAN0020                     0         0        0          2          2
+VLAN0021                     0         0        0          2          2
+VLAN0022                     0         0        0          2          2
+VLAN0023                     0         0        0          2          2
+VLAN0040                     0         0        0          2          2
+VLAN0050                     0         0        0          2          2
+VLAN0060                     0         0        0          2          2
+VLAN0061                     0         0        0          2          2
+VLAN0070                     0         0        0          2          2
+VLAN0071                     0         0        0          2          2
+VLAN0072                     0         0        0          2          2
+VLAN0099                     0         0        0          2          2
+---------------------- -------- --------- -------- ---------- ----------
+13 vlans                     0         0        0         37         37
+
+==============================================================================
+# STP ROOT
+# HANOI-RND-SW01# show spanning-tree root
+==============================================================================
+
+                                        Root    Hello Max Fwd
+Vlan                   Root ID          Cost    Time  Age Dly  Root Port
+---------------- -------------------- --------- ----- --- ---  ------------
+VLAN0001         32769 5000.000d.0000         0    2   20  15                  
+VLAN0020         24596 5000.000d.0000         0    2   20  15                  
+VLAN0021         24597 5000.000d.0000         0    2   20  15                  
+VLAN0022         24598 5000.000d.0000         0    2   20  15                  
+VLAN0023         24599 5000.000d.0000         0    2   20  15                  
+VLAN0040         24616 5000.000d.0000         0    2   20  15                  
+VLAN0050         24626 5000.000d.0000         0    2   20  15                  
+VLAN0060         24636 5000.000d.0000         0    2   20  15                  
+VLAN0061         24637 5000.000d.0000         0    2   20  15                  
+VLAN0070         24646 5000.000d.0000         0    2   20  15                  
+VLAN0071         24647 5000.000d.0000         0    2   20  15                  
+VLAN0072         24648 5000.000d.0000         0    2   20  15                  
+VLAN0099         24675 5000.000d.0000         0    2   20  15                  
+
+==============================================================================
+# IP INTERFACE
+# HANOI-RND-SW01# show ip interface brief
+==============================================================================
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     unassigned      YES unset  up                    up      
+GigabitEthernet0/1     unassigned      YES unset  up                    up      
+GigabitEthernet0/2     unassigned      YES unset  up                    up      
+GigabitEthernet0/3     unassigned      YES unset  up                    up      
+GigabitEthernet1/0     unassigned      YES unset  up                    up      
+GigabitEthernet1/1     unassigned      YES unset  up                    up      
+GigabitEthernet1/2     unassigned      YES unset  up                    up      
+GigabitEthernet1/3     unassigned      YES unset  up                    up      
+GigabitEthernet2/0     unassigned      YES unset  up                    up      
+GigabitEthernet2/1     unassigned      YES unset  up                    up      
+GigabitEthernet2/2     unassigned      YES unset  up                    up      
+GigabitEthernet2/3     unassigned      YES unset  up                    up      
+GigabitEthernet3/0     unassigned      YES unset  up                    up      
+GigabitEthernet3/1     unassigned      YES unset  up                    up      
+GigabitEthernet3/2     unassigned      YES unset  up                    up      
+GigabitEthernet3/3     unassigned      YES unset  up                    up      
+Loopback0              10.20.0.11      YES NVRAM  up                    up      
+Port-channel2          unassigned      YES unset  up                    up      
+Vlan99                 192.168.2.10    YES NVRAM  up                    up      
+
+==============================================================================
+# INTERFACE STATUS
+# HANOI-RND-SW01# show interfaces status
+==============================================================================
+
+Port      Name               Status       Vlan       Duplex  Speed Type 
+Gi0/0     TRUNK_TO_HANOI_ROU connected    trunk      a-full   auto RJ45
+Gi0/1     LACP_MEMBERS_TO_HA connected    trunk      a-full   auto RJ45
+Gi0/2     LACP_MEMBERS_TO_HA connected    trunk      a-full   auto RJ45
+Gi0/3                        connected    1          a-full   auto RJ45
+Gi1/0                        connected    1          a-full   auto RJ45
+Gi1/1                        connected    1          a-full   auto RJ45
+Gi1/2                        connected    1          a-full   auto RJ45
+Gi1/3                        connected    1          a-full   auto RJ45
+Gi2/0                        connected    1          a-full   auto RJ45
+Gi2/1                        connected    1          a-full   auto RJ45
+Gi2/2                        connected    1          a-full   auto RJ45
+Gi2/3                        connected    1          a-full   auto RJ45
+Gi3/0                        connected    1          a-full   auto RJ45
+Gi3/1                        connected    1          a-full   auto RJ45
+Gi3/2                        connected    1          a-full   auto RJ45
+Gi3/3                        connected    1          a-full   auto RJ45
+Po2       LACP_TRUNK_TO_HANO connected    trunk      a-full   auto 

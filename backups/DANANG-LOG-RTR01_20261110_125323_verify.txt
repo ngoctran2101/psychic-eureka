@@ -1,0 +1,51 @@
+! DANANG-LOG-RTR01 (10.30.0.1) - verification @ 20261110_125323
+==============================================================================
+# IP INTERFACE
+# DANANG-LOG-RTR01# show ip interface brief
+==============================================================================
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         203.0.113.18    YES NVRAM  up                    up      
+GigabitEthernet0/1         203.0.113.22    YES NVRAM  up                    up      
+GigabitEthernet0/2         unassigned      YES NVRAM  up                    up      
+GigabitEthernet0/2.30      10.30.32.1      YES NVRAM  up                    up      
+GigabitEthernet0/2.40      10.30.16.1      YES NVRAM  up                    up      
+GigabitEthernet0/2.50      10.30.10.1      YES NVRAM  up                    up      
+GigabitEthernet0/2.60      10.30.128.1     YES NVRAM  up                    up      
+GigabitEthernet0/2.70      10.30.64.1      YES NVRAM  up                    up      
+GigabitEthernet0/2.99      192.168.3.1     YES NVRAM  up                    up      
+GigabitEthernet0/3         unassigned      YES NVRAM  administratively down down    
+Loopback0                  10.30.0.1       YES NVRAM  up                    up      
+NVI0                       203.0.113.18    YES unset  up                    up      
+Tunnel201                  172.16.2.2      YES NVRAM  up                    up      
+Tunnel202                  172.16.2.6      YES NVRAM  up                    up      
+Tunnel301                  172.16.3.2      YES NVRAM  up                    up      
+
+==============================================================================
+# OSPF NEIGHBOR
+# DANANG-LOG-RTR01# show ip ospf neighbor
+==============================================================================
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+10.30.0.11        1   FULL/DR         00:00:39    192.168.3.10    GigabitEthernet0/2.99
+
+==============================================================================
+# BGP SUMMARY
+# DANANG-LOG-RTR01# show ip bgp summary
+==============================================================================
+BGP router identifier 10.30.0.1, local AS number 65030
+BGP table version is 13, main routing table version 13
+11 network entries using 1584 bytes of memory
+24 path entries using 2016 bytes of memory
+26/7 BGP path/bestpath attribute entries using 4160 bytes of memory
+8 BGP AS-PATH entries using 192 bytes of memory
+0 BGP route-map cache entries using 0 bytes of memory
+0 BGP filter-list cache entries using 0 bytes of memory
+BGP using 7952 total bytes of memory
+BGP activity 23/0 prefixes, 49/0 paths, scan interval 60 secs
+
+Neighbor        V           AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+172.16.2.1      4        65010     397     396       13    0    0 00:33:20        4
+172.16.2.5      4        65010     397     395       13    0    0 00:33:14        4
+172.16.3.1      4        65020     395     395       13    0    0 00:33:17        4
+203.0.113.17    4        65100     396     392       13    0    0 00:33:18        5
+203.0.113.21    4        65200     397     392       13    0    0 00:33:22        5

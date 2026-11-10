@@ -1,0 +1,173 @@
+! DANANG-LOG-SW01 (192.168.3.10) - verification @ 20261110_125328
+==============================================================================
+# VLAN
+# DANANG-LOG-SW01# show vlan brief
+==============================================================================
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi0/1, Gi0/2, Gi0/3, Gi1/3, Gi2/0, Gi2/1, Gi2/2, Gi2/3, Gi3/0, Gi3/1, Gi3/2, Gi3/3
+30   LOGISTICS                        active    Gi1/0
+31   LOGISTICS_DESIGN                 active    
+40   GUEST                            active    Gi1/1
+50   SERVER_EDGE                      active    
+60   IOT_TRACKING                     active    Gi1/2
+61   IOT_DESIGN_1                     active    
+62   IOT_DESIGN_2                     active    
+63   IOT_DESIGN_3                     active    
+64   IOT_DESIGN_4                     active    
+70   VOICE                            active    
+99   MANAGEMENT                       active    
+999  BLACKHOLE                        active    
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+
+==============================================================================
+# TRUNK 802.1Q
+# DANANG-LOG-SW01# show interfaces trunk
+==============================================================================
+
+Port        Mode             Encapsulation  Status        Native vlan
+Gi0/0       on               802.1q         trunking      1
+
+Port        Vlans allowed on trunk
+Gi0/0       30-31,40,50,60-64,70,99
+
+Port        Vlans allowed and active in management domain
+Gi0/0       30-31,40,50,60-64,70,99
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gi0/0       30-31,40,50,60-64,70,99
+
+==============================================================================
+# ETHERCHANNEL
+# DANANG-LOG-SW01# show etherchannel summary
+==============================================================================
+Flags:  D - down        P - bundled in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      N - not in use, no aggregation
+        f - failed to allocate aggregator
+
+        M - not in use, minimum links not met
+        m - not in use, port not aggregated due to minimum links not met
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+        A - formed by Auto LAG
+
+
+Number of channel-groups in use: 0
+Number of aggregators:           0
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+-----------------------------------------------
+
+
+==============================================================================
+# STP SUMMARY
+# DANANG-LOG-SW01# show spanning-tree summary
+==============================================================================
+Switch is in rapid-pvst mode
+Root bridge for: VLAN0001, VLAN0030-VLAN0031, VLAN0040, VLAN0050
+  VLAN0060-VLAN0064, VLAN0070, VLAN0099
+Extended system ID                      is enabled
+Portfast Default                        is disabled
+Portfast Edge BPDU Guard Default        is disabled
+Portfast Edge BPDU Filter Default       is disabled
+Loopguard Default                       is disabled
+PVST Simulation Default                 is enabled but inactive in rapid-pvst mode
+Bridge Assurance                        is enabled
+EtherChannel misconfig guard            is enabled
+Configured Pathcost method used is short
+UplinkFast                              is disabled
+BackboneFast                            is disabled
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     0         0        0         12         12
+VLAN0030                     0         0        0          2          2
+VLAN0031                     0         0        0          1          1
+VLAN0040                     0         0        0          2          2
+VLAN0050                     0         0        0          1          1
+VLAN0060                     0         0        0          2          2
+VLAN0061                     0         0        0          1          1
+VLAN0062                     0         0        0          1          1
+VLAN0063                     0         0        0          1          1
+VLAN0064                     0         0        0          1          1
+VLAN0070                     0         0        0          1          1
+VLAN0099                     0         0        0          1          1
+---------------------- -------- --------- -------- ---------- ----------
+12 vlans                     0         0        0         26         26
+
+==============================================================================
+# STP ROOT
+# DANANG-LOG-SW01# show spanning-tree root
+==============================================================================
+
+                                        Root    Hello Max Fwd
+Vlan                   Root ID          Cost    Time  Age Dly  Root Port
+---------------- -------------------- --------- ----- --- ---  ------------
+VLAN0001         32769 5000.000c.0000         0    2   20  15                  
+VLAN0030         32798 5000.000c.0000         0    2   20  15                  
+VLAN0031         32799 5000.000c.0000         0    2   20  15                  
+VLAN0040         32808 5000.000c.0000         0    2   20  15                  
+VLAN0050         32818 5000.000c.0000         0    2   20  15                  
+VLAN0060         32828 5000.000c.0000         0    2   20  15                  
+VLAN0061         32829 5000.000c.0000         0    2   20  15                  
+VLAN0062         32830 5000.000c.0000         0    2   20  15                  
+VLAN0063         32831 5000.000c.0000         0    2   20  15                  
+VLAN0064         32832 5000.000c.0000         0    2   20  15                  
+VLAN0070         32838 5000.000c.0000         0    2   20  15                  
+VLAN0099         32867 5000.000c.0000         0    2   20  15                  
+
+==============================================================================
+# IP INTERFACE
+# DANANG-LOG-SW01# show ip interface brief
+==============================================================================
+Interface              IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0     unassigned      YES unset  up                    up      
+GigabitEthernet0/1     unassigned      YES unset  up                    up      
+GigabitEthernet0/2     unassigned      YES unset  up                    up      
+GigabitEthernet0/3     unassigned      YES unset  up                    up      
+GigabitEthernet1/0     unassigned      YES unset  up                    up      
+GigabitEthernet1/1     unassigned      YES unset  up                    up      
+GigabitEthernet1/2     unassigned      YES unset  up                    up      
+GigabitEthernet1/3     unassigned      YES unset  up                    up      
+GigabitEthernet2/0     unassigned      YES unset  up                    up      
+GigabitEthernet2/1     unassigned      YES unset  up                    up      
+GigabitEthernet2/2     unassigned      YES unset  up                    up      
+GigabitEthernet2/3     unassigned      YES unset  up                    up      
+GigabitEthernet3/0     unassigned      YES unset  up                    up      
+GigabitEthernet3/1     unassigned      YES unset  up                    up      
+GigabitEthernet3/2     unassigned      YES unset  up                    up      
+GigabitEthernet3/3     unassigned      YES unset  up                    up      
+Loopback0              10.30.0.11      YES NVRAM  up                    up      
+Vlan99                 192.168.3.10    YES NVRAM  up                    up      
+
+==============================================================================
+# INTERFACE STATUS
+# DANANG-LOG-SW01# show interfaces status
+==============================================================================
+
+Port      Name               Status       Vlan       Duplex  Speed Type 
+Gi0/0     TRUNK_TO_DANANG_RO connected    trunk      a-full   auto RJ45
+Gi0/1                        connected    1          a-full   auto RJ45
+Gi0/2                        connected    1          a-full   auto RJ45
+Gi0/3                        connected    1          a-full   auto RJ45
+Gi1/0     PC-LOG01           connected    30         a-full   auto RJ45
+Gi1/1     PC-GUEST01         connected    40         a-full   auto RJ45
+Gi1/2     PC-IOT01           connected    60         a-full   auto RJ45
+Gi1/3                        connected    1          a-full   auto RJ45
+Gi2/0                        connected    1          a-full   auto RJ45
+Gi2/1                        connected    1          a-full   auto RJ45
+Gi2/2                        connected    1          a-full   auto RJ45
+Gi2/3                        connected    1          a-full   auto RJ45
+Gi3/0                        connected    1          a-full   auto RJ45
+Gi3/1                        connected    1          a-full   auto RJ45
+Gi3/2                        connected    1          a-full   auto RJ45
+Gi3/3                        connected    1          a-full   auto RJ45
